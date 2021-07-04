@@ -66,8 +66,11 @@ Warning:
     
     3) Создать пользователя:
         python manage.py createsuperuser 
+       
+    4) Статика:
+        python manage.py collectstatic
         
-    4) Запустить проект
+    5) Запустить проект
         python manage.py runserver
         
 Наслждайтесь :)
