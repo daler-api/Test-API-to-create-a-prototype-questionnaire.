@@ -1,33 +1,33 @@
-# Доп. документация к Api
+# Additional documentation for the api
 
-Удобный интерфейс для тестирования api на главной странице:
+Handy interface for testing the api on the main page:
     Swagger url '/'
     Redoc url '/redoc/'
     
-    Там есть примеры запрсов  get/post/put и все что вам нужно )
+    There are get/post/put examples and everything you need )
     
 Warning: 
-Если хотите протестить api/v1/interview/{id}/interview/ в swagger или redoc !
-Это url для теста опроса в нем именно в post нужно будет писать json ручками по техническим причинам 
+If you want to test api/v1/interview/{id}/interview/ in swagger or redoc !
+This is the url for the survey test, you will need to write json manually in the post for technical reasons 
     
     
 
-# Важные моменты и примеры запросов 
+# important points and sample queries 
 
-1) api/v1/interview/{id}/interview/ - url Прохождения опроса
+1) api/v1/interview/{id}/interview/ - url of the survey pass
 
-        Пример запроса:
+        Example request:
             {
-                "user": 1,
-                "anonymously": false,
-                "answers": [
+                { "user": 1,
+                { "anonymously": false,
+                { "answers": [
                     {
                        
-                        "choices": [1]  (id варианта ответа),
+                        { "choices": [1] (id of answer choice),
 
-                        "question": {
+                        { "question": {
                                     "id": 1,
-                                    "question_type": 1 (0-ответ текстом, 1-ответ с выбором одного варианта, 2-ответ с выбором нескольких вариантов)
+                                    "question_type": 1 (0-answer text, 1-answer with one choice, 2-answer with several choices)
 
                                      },
                    },
@@ -36,41 +36,41 @@ Warning:
             }
             
         
-- Обьект answer один в данном случае т.е ответ на один вопрос
-- question_type нужно передавать для того чтобы запросы не клонировались
+- The answer object is one in this case, i.e. an answer to one question
+- pass the question_type, so that queries are not cloned
 
 
-2) /api/v1/user/ - url Для регистрации пользователей
-3) /api/v1/rest-auth/  login/logout  Для входа и выхода из системы
-  Пример запроса: 
+2) /api/v1/user/ - url To register users
+3) /api/v1/rest-auth/ login/logout For login and logout
+  Query example: 
   {
     "username": "string",
     "password": "string"
   }
   
-  В ответ получите обьект пользователя и токен
+  In reply you'll get a user object and a token
  
-4) также после добавления start_time в интервью 
-  create/update/delete его запросов пропадает
+4) Also after adding start_time in the 
+  create/update/delete its requests disappear
 
 
-# Инструкция по разворачиванию проекта у себя на компьютере
+# Instructions for deploying the project on your computer
     
-    1) В проекте используется база данных postgresql поэтому надо ее создать
+    1) The project uses a postgresql database, so you have to create it
         CREATE DATABASE test_task_db;
     
-    2) Провести миграции:
-        Приложения указать обязательно !
+    2) Do the migration:
+        Applications must be specified !
         python manage.py makemigrations interview user
         python manage.py migrate
     
-    3) Создать пользователя:
+    3) Create user:
         python manage.py createsuperuser 
        
-    4) Статика:
+    4) Static:
         python manage.py collectstatic
         
-    5) Запустить проект
+    5) Run the project
         python manage.py runserver
         
-Наслждайтесь :)
+Enjoy :)
